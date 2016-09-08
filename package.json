@@ -7,7 +7,7 @@
     "test": "mocha --compilers js:babel-core/register --growl",
     "test:cover": "babel-node node_modules/.bin/babel-istanbul cover --report lcov --report html --report cobertura _mocha -- --compilers js:babel-core/register",
     "test:watch": "npm test -- --watch",
-    "build": "babel"
+    "lint": "eslint --env react --env browser ./src"
   },
   "keywords": [
     "react",
@@ -33,6 +33,8 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
+    "eslint": "^3.4.0",
+    "eslint-plugin-react": "^6.2.0",
     "jsdom-global": "^2.1.0",
     "mocha": "^3.0.2",
     "react-addons-test-utils": "^15.3.1",

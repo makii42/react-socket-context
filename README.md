@@ -20,51 +20,54 @@ By exposing the socket directly though the [context][context] to all child compo
 
 Given this start:
 
-    import React from 'react';
-    import { render } from 'react-dom';
+```javascript
+import React from 'react';
+import { render } from 'react-dom';
 
-    import SocketContext from 'react-socket-context';
-    import MyComponent from './MyComponent';
+import SocketContext from 'react-socket-context';
+import MyComponent from './MyComponent';
 
-    render(
-      <SocketContext>
-        <MyComponent foo="bar"/>
-      </SocketContext>
-        , document.getElementById('app')
-    );
+render(
+  <SocketContext>
+    <MyComponent foo="bar"/>
+  </SocketContext>
+    , document.getElementById('app')
+);
+```
 
 This will set up a socket at the default URL (wherever your app was loaded from), and expose it in the child context for child components to access. To access it in `MyComponent`, do as follows:
 
-    import React, { Component, PropTypes } from 'react';
+```javascript
+import React, { Component, PropTypes } from 'react';
 
-    export default class MyComponent extends Component {
-      componentDidMount() {
-        this.context.socket.on('bootstrap', (data) => this.handleDataBootstrap(data));
-        this.context.socket.on('event', (data) => this.handleDataIncremental(data));
-        this.context.socket.emit('bootstrap', { duration: Moment.duration(1, 'h') } );
-      }
+export default class MyComponent extends Component {
+  componentDidMount() {
+    this.context.socket.on('bootstrap', (data) => this.handleDataBootstrap(data));
+    this.context.socket.on('event', (data) => this.handleDataIncremental(data));
+    this.context.socket.emit('bootstrap', { duration: Moment.duration(1, 'h') } );
+  }
 
-      handleDataBootstrap(data) {
-        // Handle your bootstrap data package to set up the component.
-        this.setState({foo: data.foo});
-      }
+  handleDataBootstrap(data) {
+    // Handle your bootstrap data package to set up the component.
+    this.setState({foo: data.foo});
+  }
 
-      handleDataIncremental(data) {
-        // Merge the new event
-        const newFoo = this.mergeFoo(this.state.foo, data);
-        this.setState({foo: newFoo});
-      }
+  handleDataIncremental(data) {
+    // Merge the new event
+    const newFoo = this.mergeFoo(this.state.foo, data);
+    this.setState({foo: newFoo});
+  }
 
-      mergeFoo(base, increment) {
-        // merge data
-      }
-      // ...
-    }
+  mergeFoo(base, increment) {
+    // merge data
+  }
+  // ...
+}
 
-    DelayChart.contextTypes = {
-      socket: PropTypes.object,
-    };
-
+DelayChart.contextTypes = {
+  socket: PropTypes.object,
+};
+```
 
 Looking at this component, it just accesses the provided `socket` via `this.context.socket`. For that to work, *you need to declare your usage of the socket in `contextTypes`*.
 

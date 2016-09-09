@@ -1,7 +1,7 @@
 React Socket Context
 =========
 
-[![Build Status](https://travis-ci.org/makii42/react-socket-context.svg?branch=master)](https://travis-ci.org/makii42/react-socket-context)
+[![Build Status](https://travis-ci.org/makii42/react-socket-context.svg?branch=master)](https://travis-ci.org/makii42/react-socket-context) [![Dependencies](https://david-dm.org/makii42/react-socket-context/status.svg)](https://david-dm.org/makii42/react-socket-context)
 
 A small component that creates a [socket.io](http://socket.io/) connection and exposes it via
 the components' [context][context] to child components.

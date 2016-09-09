@@ -6,9 +6,9 @@ import { mount, shallow } from 'enzyme';
 
 import React, { Component, PropTypes, ContextTypes } from 'react';
 
-import Socketeer from '../src/Socketeer';
+import SocketContext from '../src/SocketContext';
 
-describe('<Socketeer />', () => {
+describe('<SocketContext />', () => {
   let SocketIOClient, testChild, seenSocket;
 
   const socket = {
@@ -19,34 +19,34 @@ describe('<Socketeer />', () => {
     testChild = <TestChild />
     SocketIOClient = Sinon.stub();
     SocketIOClient.returns(socket);
-    Socketeer.__Rewire__('SocketIOClient', SocketIOClient);
+    SocketContext.__Rewire__('SocketIOClient', SocketIOClient);
   });
 
   afterEach(()=> {
-    Socketeer.__ResetDependency__('SocketIOClient');
+    SocketContext.__ResetDependency__('SocketIOClient');
     seenSocket = void 0;
   })
 
   it('sets up socket connection without namespace', () => {
-    const wrapper = mount(<Socketeer>{testChild}</Socketeer>);
+    const wrapper = mount(<SocketContext>{testChild}</SocketContext>);
     expect(SocketIOClient.calledOnce).to.equal(true);
     expect(seenSocket).to.be.equal(socket);
   });
 
   it('sets up socket connection with namespace', () => {
-    const wrapper = mount(<Socketeer namespace="/foo">{testChild}</Socketeer>);
+    const wrapper = mount(<SocketContext namespace="/foo">{testChild}</SocketContext>);
     expect(SocketIOClient.calledOnce).to.equal(true);
     expect(SocketIOClient.calledWith('/foo')).to.equal(true);
     expect(seenSocket).to.be.equal(socket);
   });
 
   it('closes socket on unmount', () => {
-    const wrapper = mount(<Socketeer>{testChild}</Socketeer>);
+    const wrapper = mount(<SocketContext>{testChild}</SocketContext>);
     wrapper.unmount();
     expect(socket.close.calledOnce).to.equal(true);
   })
 
-  // example child component: does
+  // example child component: does just extract the socket for assertions
   class TestChild extends Component {
 
     componentDidMount() {

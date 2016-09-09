@@ -1,7 +1,7 @@
 import { Component, PropTypes } from 'react';
 import SocketIOClient from 'socket.io-client';
 
-class Socketeer extends Component {
+class SocketContext extends Component {
 
   componentWillMount() {
     this.socket = SocketIOClient(this.props.namespace);
@@ -21,13 +21,13 @@ class Socketeer extends Component {
   }
 }
 
-Socketeer.childContextTypes = {
+SocketContext.childContextTypes = {
   socket: PropTypes.object,
 };
 
-Socketeer.propTypes = {
+SocketContext.propTypes = {
   namespace: PropTypes.string,
   children: PropTypes.element.isRequired,
 };
 
-export default Socketeer;
+export default SocketContext;

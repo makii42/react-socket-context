@@ -8,7 +8,9 @@ the components' [context][context] to child components.
 
 ## How to install?
 
-    npm install --save FIXME
+    npm install --save react-socket-context
+
+As you probably already have `react` (including `react-dom`) and `socket.io` in your dependencies, that's all you need. `react-socket-context` exposes those as peer dependencies.
 
 ## Wait? There is `react-socket`?
 
@@ -69,8 +71,8 @@ DelayChart.contextTypes = {
 };
 ```
 
-Looking at this component, it just accesses the provided `socket` via `this.context.socket`. For that to work, *you need to declare your usage of the socket in `contextTypes`*.
+Looking at this component, it just accesses the provided `socket` via `this.context.socket`. For that to work, **you need to declare your usage of the socket in `contextTypes`**.
 
-
+Once you did that, you should easily be able to work with your socket inside your component, either subscribing to events, or emitting events of your own.
 
 [context]: https://facebook.github.io/react/docs/context.html

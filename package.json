@@ -2,17 +2,19 @@
   "name": "react-socket-context",
   "version": "1.0.0",
   "description": "react socket.io provider component, passing the socket to children using the context",
-  "main": "index.js",
+  "main": "lib/SocketContext.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/makii42/react-socket-context.git"
   },
   "scripts": {
+    "clean": "",
     "test": "mocha --compilers js:babel-core/register --growl",
     "test:cover": "babel-node node_modules/.bin/babel-istanbul cover --report lcov --report html --report cobertura _mocha -- --compilers js:babel-core/register",
     "test:watch": "npm test -- --watch",
+    "compile": "babel --presets es2015,stage-0,react -d lib/ src/",
     "lint": "eslint --env react --env browser ./src",
-    "ci": "npm i react socket.io react-dom && npm run lint && npm test"
+    "ci": "npm i react socket.io-client react-dom && npm run lint && npm test"
   },
   "keywords": [
     "react",

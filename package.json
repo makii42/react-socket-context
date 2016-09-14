@@ -2,17 +2,18 @@
   "name": "react-socket-context",
   "version": "1.0.0",
   "description": "react socket.io provider component, passing the socket to children using the context",
-  "main": "lib/SocketContext.js",
+  "main": "lib",
   "repository": {
     "type": "git",
     "url": "https://github.com/makii42/react-socket-context.git"
   },
   "scripts": {
-    "clean": "",
+    "clean": "rimraf lib/*",
     "test": "mocha --compilers js:babel-core/register --growl",
     "test:cover": "babel-node node_modules/.bin/babel-istanbul cover --report lcov --report html --report cobertura _mocha -- --compilers js:babel-core/register",
     "test:watch": "npm test -- --watch",
-    "compile": "babel --presets es2015,stage-0,react -d lib/ src/",
+    "compile": "npm run clean && npm run compile:build",
+    "compile:build": "babel  --no-babelrc --presets es2015,stage-0,react -d lib/ src/",
     "lint": "eslint --env react --env browser ./src",
     "ci": "npm i react socket.io-client react-dom && npm run lint && npm test"
   },
@@ -35,6 +36,7 @@
     "babel-cli": "^6.14.0",
     "babel-eslint": "^6.1.2",
     "babel-istanbul": "^0.11.0",
+    "babel-loader": "^6.2.5",
     "babel-plugin-rewire": "^1.0.0-rc-7",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
@@ -47,6 +49,7 @@
     "jsdom-global": "^2.1.0",
     "mocha": "^3.0.2",
     "react-addons-test-utils": "^15.3.1",
+    "rimraf": "^2.5.4",
     "sinon": "^1.17.5",
     "testdouble": "^1.6.1"
   }

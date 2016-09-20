@@ -16,7 +16,9 @@
     "compile:build": "babel  --no-babelrc --presets es2015,stage-0,react -d lib/ src/",
     "lint": "eslint --env react --env browser ./src",
     "ci": "npm i react socket.io-client react-dom && npm run lint && npm test",
-    "preversion": "npm run ci"
+    "preversion": "npm run clean && npm run ci",
+    "version": "npm run clean && npm run ci",
+    "postversion": "git push && git push --tags && npm run clean"
   },
   "keywords": [
     "react",

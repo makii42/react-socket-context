@@ -18,7 +18,7 @@
     "ci": "npm i react socket.io-client react-dom && npm run lint && npm test",
     "preversion": "npm run clean && npm run ci",
     "version": "npm run clean && npm run ci",
-    "postversion": "git push && git push --tags && npm run clean"
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "react",

@@ -45,6 +45,11 @@ This will set up a socket at the default URL (wherever your app was loaded from)
 import React, { Component, PropTypes } from 'react';
 
 export default class MyComponent extends Component {
+
+  contextTypes = {
+    socket: PropTypes.object.isRequired,
+  }
+
   componentDidMount() {
     this.context.socket.on('bootstrap', (data) => this.handleDataBootstrap(data));
     this.context.socket.on('event', (data) => this.handleDataIncremental(data));
@@ -67,10 +72,6 @@ export default class MyComponent extends Component {
   }
   // ...
 }
-
-DelayChart.contextTypes = {
-  socket: PropTypes.object,
-};
 ```
 
 Looking at this component, it just accesses the provided `socket` via `this.context.socket`. For that to work, **you need to declare your usage of the socket in `contextTypes`**.

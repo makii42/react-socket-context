@@ -1,6 +1,6 @@
 {
   "name": "react-socket-context",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "react socket.io provider component, passing the socket to children using the context",
   "main": "lib",
   "repository": {

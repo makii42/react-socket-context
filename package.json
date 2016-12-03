@@ -11,11 +11,12 @@
     "clean": "rimraf lib/*",
     "test": "mocha --compilers js:babel-core/register --growl",
     "test:cover": "babel-node node_modules/.bin/babel-istanbul cover --report lcov --report html --report cobertura _mocha -- --compilers js:babel-core/register",
+    "test:coverall-upload": "cat ./coverage/lcov.info | coveralls",
     "test:watch": "npm test -- --watch",
     "compile": "npm run clean && npm run compile:build",
     "compile:build": "babel  --no-babelrc --presets es2015,stage-0,react -d lib/ src/",
     "lint": "eslint --env react --env browser ./src",
-    "ci": "npm i react socket.io-client react-dom && npm run lint && npm test",
+    "ci": "npm i react socket.io-client react-dom && npm run lint && npm run test:cover",
     "preversion": "npm run clean && npm run ci",
     "version": "npm run clean && npm run ci && npm run compile",
     "postversion": "git push && git push --tags"
@@ -32,8 +33,8 @@
   "license": "MIT",
   "peerDependencies": {
     "react": "^15.3.1",
-    "socket.io-client": "^1.4.8",
-    "react-dom": "^15.3.1"
+    "react-dom": "^15.3.1",
+    "socket.io-client": "^1.4.8"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
@@ -45,13 +46,14 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
+    "coveralls": "^2.11.15",
     "enzyme": "^2.4.1",
     "eslint": "^3.4.0",
     "eslint-plugin-react": "^6.2.0",
     "jsdom": "^9.5.0",
     "jsdom-global": "^2.1.0",
     "mocha": "^3.0.2",
-    "react-addons-test-utils": "^15.3.1",
+    "react-addons-test-utils": "^15.4.1",
     "rimraf": "^2.5.4",
     "sinon": "^1.17.5",
     "testdouble": "^1.6.1"

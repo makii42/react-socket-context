@@ -40,10 +40,11 @@ render(
 );
 ```
 
-This will set up a socket at the default URL (wherever your app was loaded from), and expose it in the child context for child components to access. To access it in `MyComponent`, do as follows:
+This will set up a socket to a `socket.io` server at the default URL (wherever your app was loaded from), and expose it in the child context for child components for usage. To access it in `MyComponent`, do as follows:
 
 ```javascript
 import React, { Component, PropTypes } from 'react';
+import Moment from 'moment';
 
 export default class MyComponent extends Component {
 
@@ -74,6 +75,26 @@ export default class MyComponent extends Component {
   // ...
 }
 ```
+
+## Properties
+
+The only offered property as of now is `namespace`, which is passed along to the `socket.io` constructor:
+
+```javascript
+import React from 'react';
+import { render } from 'react-dom';
+
+import SocketContext from 'react-socket-context';
+import MyComponent from './MyComponent';
+
+render(
+  <SocketContext namespace="/news">
+    <MyComponent foo="bar"/>
+  </SocketContext>
+    , document.getElementById('app')
+);
+```
+
 
 Looking at this component, it just accesses the provided `socket` via `this.context.socket`. For that to work, **you need to declare your usage of the socket in `contextTypes`**.
 

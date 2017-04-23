@@ -1,0 +1,11 @@
+excludes:
+- .git
+- .hg
+- .vscode
+- .idea
+- node_modules
+- lib
+- yarn.lock
+pipeline:
+- npm install
+- npm test

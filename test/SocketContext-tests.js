@@ -4,7 +4,8 @@ import Sinon from 'sinon';
 import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
 
-import React, { Component, PropTypes, ContextTypes } from 'react';
+import React, { Component, ContextTypes } from 'react';
+import PropTypes from 'prop-types';
 
 import SocketContext from '../src/SocketContext';
 

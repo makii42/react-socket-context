@@ -1,4 +1,5 @@
-import { Component, PropTypes } from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 import SocketIOClient from 'socket.io-client';
 
 class SocketContext extends Component {

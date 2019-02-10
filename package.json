@@ -59,6 +59,6 @@
     "testdouble": "^3.0.0"
   },
   "dependencies": {
-    "prop-types": "^15.5.8"
+    "prop-types": "^15.7.0"
   }
 }
